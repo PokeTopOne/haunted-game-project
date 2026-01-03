@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>伍、結論｜追魂者</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  font-family:"Microsoft JhengHei",sans-serif;
+  background:radial-gradient(circle at top,#1b2a4a,#020617);
+  color:#e8f2ff;
+  overflow-x:hidden;
+}
+
+/* ===== Click to Start ===== */
+.click-start{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#020617;
+  z-index:10000;
+  cursor:pointer;
+  font-size:1.2rem;
+  letter-spacing:2px;
+  animation:pulse 1.6s infinite;
+}
+@keyframes pulse{
+  0%,100%{opacity:.5}
+  50%{opacity:1}
+}
+
+/* ===== 進場特效 ===== */
+.intro-overlay{
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at center, rgba(100,200,255,.25), transparent 60%),
+    linear-gradient(#020617,#000);
+  z-index:9999;
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+.intro-overlay.active{
+  display:flex;
+  animation:introFade 2.8s ease forwards;
+}
+.intro-overlay::before{
+  content:"";
+  position:absolute;
+  width:120%;
+  height:3px;
+  background:linear-gradient(90deg, transparent, #9fd4ff, transparent);
+  animation:scan 1.1s ease-in-out infinite;
+}
+.intro-core{
+  width:160px;
+  height:160px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(180,230,255,.9), transparent 70%);
+  animation:pulseCore 1.3s infinite;
+}
+
+@keyframes scan{
+  from{top:-10%}
+  to{top:110%}
+}
+@keyframes pulseCore{
+  0%,100%{transform:scale(.8);opacity:.4}
+  50%{transform:scale(1.15);opacity:1}
+}
+@keyframes introFade{
+  to{opacity:0;pointer-events:none}
+}
+
+/* ===== Hero ===== */
+.hero{
+  min-height:60vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:60px 20px;
+  position:relative;
+  background:
+    linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.85)),
+    url("img/conclusion-hero.png") center/cover no-repeat;
+  opacity:0;
+  transform:scale(1.08);
+}
+.hero.show{
+  animation:heroReveal 1.6s ease forwards;
+}
+@keyframes heroReveal{
+  to{opacity:1;transform:scale(1)}
+}
+.hero h1{
+  font-size:clamp(3rem,6vw,4.5rem);
+  font-weight:800;
+  letter-spacing:6px;
+}
+
+/* ===== 內容 ===== */
+section{padding:90px 0}
+.glass-box{
+  background:linear-gradient(rgba(255,255,255,.1),rgba(255,255,255,.05));
+  border-radius:28px;
+  padding:70px 55px;
+  box-shadow:0 30px 60px rgba(0,0,0,.45);
+}
+.tool-list{
+  margin-top:50px;
+  display:flex;
+  justify-content:center;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.tool-item{
+  background:rgba(255,255,255,.15);
+  padding:12px 22px;
+  border-radius:999px;
+}
+
+/* ===== 震動 ===== */
+body.shake{
+  animation:shake .25s ease;
+}
+@keyframes shake{
+  0%{transform:translate(0)}
+  25%{transform:translate(2px,-2px)}
+  50%{transform:translate(-2px,2px)}
+  75%{transform:translate(2px,2px)}
+  100%{transform:translate(0)}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Click to Start -->
+<div id="clickStart" class="click-start">
+  ▶ Click to Start
+</div>
+
+<!-- 進場特效 -->
+<div id="intro" class="intro-overlay">
+  <div class="intro-core"></div>
+</div>
+
+<!-- 音樂 -->
+<audio id="bgm" loop>
+  <source src="music/bgm.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Hero -->
+<section id="hero" class="hero">
+  <h1>伍、結論</h1>
+</section>
+
+<section>
+<div class="container">
+<div class="glass-box text-center">
+
+<p>本專題以恐怖探索遊戲為主題，整合 Unity、Blender 與音效資源。</p>
+<p>透過迷霧與聲音設計，強化緊張與沉浸感。</p>
+
+<div class="tool-list">
+  <div class="tool-item">🎮 Unity</div>
+  <div class="tool-item">🧊 Blender</div>
+  <div class="tool-item">🔊 Freesound</div>
+</div>
+
+<div class="mt-5">
+  <a href="index.html" class="btn btn-outline-light">← 回首頁</a>
+</div>
+
+</div>
+</div>
+</section>
+
+<script>
+const clickStart = document.getElementById("clickStart");
+const intro = document.getElementById("intro");
+const hero = document.getElementById("hero");
+const bgm = document.getElementById("bgm");
+
+clickStart.onclick = () => {
+  // 播音樂（合法）
+  bgm.volume = 0.35;
+  bgm.play().catch(()=>{});
+
+  // 顯示進場特效
+  clickStart.remove();
+  intro.classList.add("active");
+
+  // 震動
+  document.body.classList.add("shake");
+  setTimeout(()=>document.body.classList.remove("shake"),300);
+
+  // Hero 顯示
+  setTimeout(()=>{
+    hero.classList.add("show");
+  },1200);
+};
+</script>
+
+</body>
+</html>

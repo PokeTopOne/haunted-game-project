@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>參、系統架構｜追魂者</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body{
+  font-family:"Microsoft JhengHei",sans-serif;
+  background:radial-gradient(circle at top,#1b2a4a,#020617);
+  color:#e8f2ff;
+}
+
+/* ===== Hero ===== */
+.hero{
+  min-height:65vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:60px 20px;
+  background:
+    linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.85)),
+    url("img/structure-flow.png") center/cover no-repeat;
+}
+
+.hero h1{
+  font-size:clamp(3rem,6vw,4.5rem);
+  font-weight:800;
+  letter-spacing:6px;
+}
+
+/* ===== 區塊 ===== */
+section{padding:80px 0;}
+
+.glass-box{
+  background:rgba(255,255,255,.08);
+  border-radius:26px;
+  padding:70px 50px;
+  box-shadow:0 20px 40px rgba(0,0,0,.35);
+}
+
+/* ===== 標題 ===== */
+.section-title{
+  text-align:center;
+  font-size:2.2rem;
+  font-weight:800;
+  margin-bottom:40px;
+}
+
+.desc{
+  text-align:center;
+  max-width:720px;
+  margin:0 auto 50px;
+  line-height:1.9;
+  opacity:.95;
+}
+
+/* ===== 流程圖 ===== */
+.flowchart{
+  max-width:460px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:18px;
+}
+
+/* ===== 動畫基礎 ===== */
+.flow-step,
+.flow-arrow,
+.flow-end{
+  opacity:0;
+  transform:translateY(20px);
+  animation:fadeUp .6s ease forwards;
+}
+
+@keyframes fadeUp{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* ===== 流程節點 ===== */
+.flow-step{
+  width:100%;
+  background:#f5c9a9;
+  color:#7a1f00;
+  font-weight:700;
+  padding:14px 18px;
+  border-radius:6px;
+  text-align:center;
+  box-shadow:0 6px 14px rgba(0,0,0,.25);
+}
+
+/* 起點 */
+.flow-start{
+  background:#e6e6e6;
+  color:#b40000;
+}
+
+/* ===== 箭頭 ===== */
+.flow-arrow{
+  width:0;
+  height:0;
+  border-left:14px solid transparent;
+  border-right:14px solid transparent;
+  border-top:18px solid #4da3ff;
+}
+
+/* ===== 分支 ===== */
+.flow-branch{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  margin-top:10px;
+}
+
+/* ===== 結果 ===== */
+.flow-end{
+  width:45%;
+  padding:14px 0;
+  font-weight:800;
+  border-radius:6px;
+  text-align:center;
+  box-shadow:0 6px 14px rgba(0,0,0,.25);
+}
+
+.flow-end.success{
+  background:#c8f7c5;
+  color:#0a6b2c;
+}
+
+.flow-end.fail{
+  background:#f7c5c5;
+  color:#8a0f0f;
+}
+
+/* ===== 動畫延遲（依序） ===== */
+.flow-step:nth-of-type(1){animation-delay:.2s}
+.flow-arrow:nth-of-type(2){animation-delay:.35s}
+
+.flow-step:nth-of-type(3){animation-delay:.55s}
+.flow-arrow:nth-of-type(4){animation-delay:.7s}
+
+.flow-step:nth-of-type(5){animation-delay:.9s}
+.flow-arrow:nth-of-type(6){animation-delay:1.05s}
+
+.flow-step:nth-of-type(7){animation-delay:1.25s}
+.flow-arrow:nth-of-type(8){animation-delay:1.4s}
+
+.flow-step:nth-of-type(9){animation-delay:1.6s}
+.flow-arrow:nth-of-type(10){animation-delay:1.75s}
+
+.flow-end{animation-delay:2s}
+
+/* ===== 返回 ===== */
+.back-btn{
+  margin-top:80px;
+  text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <h1>參、系統架構</h1>
+</section>
+
+<section>
+<div class="container">
+<div class="glass-box">
+
+  <h2 class="section-title">系統流程架構</h2>
+
+  <p class="desc">
+    本系統以遊戲流程為核心設計概念，  
+    透過清楚的狀態轉換與事件判斷，  
+    引導玩家完成探索、互動與通關挑戰。
+  </p>
+
+  <!-- ===== 系統流程圖 ===== -->
+  <div class="flowchart">
+
+    <div class="flow-step flow-start">進入遊戲</div>
+    <div class="flow-arrow"></div>
+
+    <div class="flow-step">從地牢中醒來</div>
+    <div class="flow-arrow"></div>
+
+    <div class="flow-step">尋找寶箱</div>
+    <div class="flow-arrow"></div>
+
+    <div class="flow-step">傳送城堡</div>
+    <div class="flow-arrow"></div>
+
+    <div class="flow-step">統計分數</div>
+    <div class="flow-arrow"></div>
+
+    <div class="flow-branch">
+      <div class="flow-end success">成功</div>
+      <div class="flow-end fail">失敗</div>
+    </div>
+
+  </div>
+
+  <div class="back-btn">
+    <a href="index.html" class="btn btn-outline-light px-4">← 回首頁</a>
+  </div>
+
+</div>
+</div>
+</section>
+
+</body>
+</html>
