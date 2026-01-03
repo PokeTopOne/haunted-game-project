@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>追魂者｜專題內容導覽</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  font-family:"Microsoft JhengHei",sans-serif;
+  background:radial-gradient(circle at top,#1b2a4a,#020617);
+  color:#e8f2ff;
+  overflow-x:hidden;
+}
+
+/* ===== Hero ===== */
+.hero{
+  min-height:70vh;
+  padding:60px 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  background:
+    linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.85)),
+    url("reaper.png") center / cover no-repeat;
+}
+
+.hero-content{
+  animation:fadeUp 1.2s ease both;
+}
+
+.hero h1{
+  font-size:clamp(3rem,6vw,5rem);
+  font-weight:800;
+  letter-spacing:8px;
+}
+
+.hero p{
+  max-width:720px;
+  margin:auto;
+  line-height:1.8;
+  opacity:.9;
+}
+
+/* 下滑提示 */
+.scroll-hint{
+  position:absolute;
+  bottom:28px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:.85rem;
+  opacity:.7;
+  animation:bounce 2s infinite;
+}
+
+@keyframes bounce{
+  0%,100%{transform:translate(-50%,0)}
+  50%{transform:translate(-50%,10px)}
+}
+
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(30px)}
+  to{opacity:1; transform:none}
+}
+
+/* ===== 內容區 ===== */
+section{
+  padding:60px 0;
+}
+
+.section-title{
+  text-align:center;
+  font-size:2.1rem;
+  font-weight:800;
+  margin-bottom:40px;
+}
+
+/* ===== 卡片 ===== */
+.topic-card{
+  background:#fff;
+  color:#000;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 20px 40px rgba(0,0,0,.25);
+  height:100%;
+  transition:.45s;
+}
+
+.topic-card:hover{
+  transform:translateY(-14px) scale(1.02);
+  box-shadow:0 35px 70px rgba(0,0,0,.45);
+}
+
+.topic-header{
+  background:linear-gradient(135deg,#1e88e5,#26c6da);
+  color:#fff;
+  text-align:center;
+  padding:16px;
+  font-weight:800;
+  letter-spacing:1px;
+}
+
+.topic-img{
+  overflow:hidden;
+}
+
+.topic-img img{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+  transition:.6s;
+}
+
+.topic-card:hover .topic-img img{
+  transform:scale(1.1);
+}
+
+.topic-body{
+  padding:20px;
+  text-align:center;
+}
+
+.topic-body p{
+  font-size:.95rem;
+  opacity:.85;
+}
+
+.topic-body a{
+  display:inline-block;
+  margin-top:10px;
+  background:#1e88e5;
+  color:#fff;
+  padding:9px 28px;
+  border-radius:999px;
+  text-decoration:none;
+  transition:.3s;
+}
+
+.topic-body a:hover{
+  background:#0d47a1;
+}
+
+/* ===== Footer ===== */
+footer{
+  padding:40px 0;
+  text-align:center;
+  font-size:.8rem;
+  opacity:.6;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>追魂者</h1>
+    <p class="mt-4">
+      Unity 2D 恐怖闖關遊戲<br>
+      真理大學 資訊工程學系
+    </p>
+    <p class="mt-3">
+      指導教授：謝明興<br>
+      組長：宋琬珞｜組員：黃韋銘、李峻
+    </p>
+  </div>
+
+  <div class="scroll-hint">▼ 向下瀏覽</div>
+</section>
+
+<!-- ===== 導覽 ===== -->
+<section>
+<div class="container">
+  <h2 class="section-title">專題內容導覽</h2>
+
+  <div class="row g-4">
+
+    <div class="col-md-4">
+      <div class="topic-card">
+        <div class="topic-header">壹、動機與目的</div>
+        <div class="topic-img"><img src="img/motivation.png"></div>
+        <div class="topic-body">
+          <p>專題發想背景與研究動機</p>
+          <a href="motivation.html">點擊進入</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="topic-card">
+        <div class="topic-header">貳、實作方法及流程</div>
+        <div class="topic-img"><img src="img/method.png"></div>
+        <div class="topic-body">
+          <p>使用工具與開發流程</p>
+          <a href="method.html">點擊進入</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="topic-card">
+        <div class="topic-header">參、系統架構</div>
+        <div class="topic-img"><img src="img/structure.png"></div>
+        <div class="topic-body">
+          <p>遊戲流程與系統邏輯</p>
+          <a href="structure.html">點擊進入</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="topic-card">
+        <div class="topic-header">肆、成果展示</div>
+        <div class="topic-img"><img src="img/result.png"></div>
+        <div class="topic-body">
+          <p>怪物設計與場景成果</p>
+          <a href="result.html">點擊進入</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="topic-card">
+        <div class="topic-header">伍、結論</div>
+        <div class="topic-img"><img src="img/conclusion.png"></div>
+        <div class="topic-body">
+          <p>專題成果與反思</p>
+          <a href="conclusion.html">點擊進入</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<footer>
+© 追魂者｜Unity × HTML5 × CSS3 × Bootstrap 5<br>
+AE140172 劉竣廷
+</footer>
+
+</body>
+</html>
